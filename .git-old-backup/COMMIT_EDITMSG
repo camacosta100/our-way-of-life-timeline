@@ -1,0 +1,7 @@
+Drop Skip button on the basic-info page
+
+All basic-info fields are now required (per the validation added in
+the previous commit), so Skip was misleading. Removed the button and
+left a spacer so the Next button stays right-aligned in the btn-row.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>

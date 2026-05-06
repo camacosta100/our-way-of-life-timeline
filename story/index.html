@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Share Your Story — Our Way of Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { overflow-y: scroll; }
+
+    body {
+      font-family: "Libre Franklin", sans-serif;
+      background-color: #fffcf5;
+      color: #2d2d2d;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    .page-header {
+      text-align: center;
+      padding: 2.5rem 1.5rem 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #5c3a1e;
+      margin-bottom: 0;
+    }
+
+    .page-header h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #c4751a;
+      text-decoration: underline;
+      text-decoration-color: #c4751a;
+      text-underline-offset: 0.35rem;
+      text-decoration-thickness: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: #8b7355;
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto 0.7rem;
+      line-height: 1.6;
+    }
+
+    .page-header p.header-sub {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #a8987b;
+      margin-bottom: 2rem;
+    }
+
+    /* ============================================
+       FEATURED STORIES (top)
+       ============================================ */
+    .featured-stories {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .featured-stories h3 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #5c3a1e;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .story-carousel {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      justify-content: center;
+    }
+
+    .story-carousel::-webkit-scrollbar { height: 4px; }
+    .story-carousel::-webkit-scrollbar-track { background: transparent; }
+    .story-carousel::-webkit-scrollbar-thumb { background: #daa520; border-radius: 2px; }
+
+    .stories-section {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      padding: 0 1rem;
+    }
+
+    .stories-heading {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #8b7355;
+      text-align: center;
+      margin: 0 0 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .story-card {
+      flex: 0 0 220px;
+      scroll-snap-align: start;
+      background: #fef3c7;
+      border: 1px solid #f0e4c8;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(92,58,30,0.08);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(92,58,30,0.14);
+    }
+
+    .story-card .story-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 0.6rem;
+    }
+
+    .story-card .quote {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #5c3a1e;
+      line-height: 1.45;
+      margin: 0 0 0.5rem;
+    }
+
+    .story-card .attribution {
+      font-size: 0.72rem;
+      color: #8b7355;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* ============================================
+       FORM CONTAINER
+       ============================================ */
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    /* ============================================
+       PROGRESS BAR
+       ============================================ */
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background: #ece4d8;
+      transition: background 0.3s ease;
+    }
+
+    .progress-step.done { background: #daa520; }
+    .progress-step.active { background: #e8a317; }
+
+    .progress-label {
+      font-size: 0.78rem;
+      color: #8b7355;
+      text-align: right;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ============================================
+       SECTION / PROMPT
+       ============================================ */
+    .form-section {
+      display: none;
+    }
+
+    .form-section.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .prompt-text {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #5c3a1e;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      transition: font-size 0.2s ease;
+    }
+
+    .prompt-text.long { font-size: 1.25rem; }
+    .prompt-text.very-long { font-size: 1.15rem; }
+
+    /* ============================================
+       TEXT INPUT
+       ============================================ */
+    .answer-area {
+      width: 100%;
+      min-height: 140px;
+      border: 2px solid #ece4d8;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #2d2d2d;
+      background: #fff;
+      resize: vertical;
+      transition: border-color 0.2s ease;
+    }
+
+    .answer-area:focus {
+      outline: none;
+      border-color: #daa520;
+    }
+
+    .answer-area::placeholder {
+      color: #bfae94;
+    }
+
+    /* ============================================
+       VOICE RECORDER
+       ============================================ */
+    .recorder-section {
+      margin-top: 1rem;
+    }
+
+    .or-divider {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #8b7355;
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #ece4d8;
+    }
+
+    .or-divider::before { left: 0; }
+    .or-divider::after { right: 0; }
+
+    .record-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border: 2px solid #ece4d8;
+      border-radius: 8px;
+      background: #fff;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #5c3a1e;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .record-btn:hover {
+      border-color: #daa520;
+      background: #fffbeb;
+    }
+
+    .record-btn.recording {
+      border-color: #e05050;
+      background: #fef2f2;
+      color: #c43030;
+    }
+
+    .record-btn .mic-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .record-btn .pulse-dot {
+      display: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e05050;
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .record-btn.recording .pulse-dot { display: inline-block; }
+    .record-btn.recording .mic-icon { display: none; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .recording-status {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #8b7355;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+    }
+
+    .transcription-preview {
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: #fef9ee;
+      border: 1px dashed #daa520;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-style: italic;
+      color: #5c3a1e;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .transcription-preview.visible { display: block; }
+
+    .audio-preview {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 6px;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .audio-preview.visible { display: flex; }
+
+    .audio-preview .check-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: #22c55e;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .audio-preview .saved-label {
+      font-size: 0.85rem;
+      color: #15803d;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .audio-preview audio {
+      flex: 1;
+      height: 36px;
+      min-width: 0;
+    }
+
+    .delete-audio-btn {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      color: #8b7355;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .delete-audio-btn:hover {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    /* ============================================
+       FILE UPLOAD
+       ============================================ */
+    .file-input-hidden {
+      display: none;
+    }
+
+    .file-upload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border: 2px solid #ece4d8;
+      border-radius: 8px;
+      background: #fff;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #5c3a1e;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .file-upload-btn:hover {
+      border-color: #daa520;
+      background: #fffbeb;
+    }
+
+    .file-upload-btn .upload-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .file-upload-hint {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #8b7355;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .file-preview {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 6px;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .file-preview.visible { display: flex; }
+
+    .file-preview .check-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: #22c55e;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .file-preview .file-name {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.88rem;
+      color: #15803d;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-preview .file-size {
+      flex-shrink: 0;
+      font-size: 0.78rem;
+      color: #6b8e72;
+    }
+
+    .file-upload-status {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #8b7355;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+    }
+
+    /* ============================================
+       BUTTONS
+       ============================================ */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .btn {
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.65rem 1.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-next {
+      background: #daa520;
+      color: #fff;
+    }
+
+    .btn-next:hover { background: #c49418; }
+
+    .btn-skip {
+      background: transparent;
+      color: #8b7355;
+      border: 1px solid #ece4d8;
+    }
+
+    .btn-skip:hover {
+      background: #faf5ec;
+      border-color: #daa520;
+    }
+
+    .btn-back {
+      background: transparent;
+      color: #8b7355;
+      padding: 0.65rem 1rem;
+    }
+
+    .btn-back:hover { color: #5c3a1e; }
+
+    .btn-submit {
+      background: #5c3a1e;
+      color: #fff;
+      padding: 0.75rem 2.5rem;
+      font-size: 1rem;
+    }
+
+    .btn-submit:hover { background: #4a2e17; }
+
+    .submit-note {
+      text-align: center;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #a8987b;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       COMPLETION SCREEN
+       ============================================ */
+    .confirm-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(92, 58, 30, 0.55);
+      backdrop-filter: blur(3px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .confirm-overlay.visible { display: flex; }
+
+    .confirm-modal {
+      background: #fffcf5;
+      border-radius: 12px;
+      padding: 1.8rem 1.8rem 1.4rem;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(92, 58, 30, 0.25);
+      animation: modalIn 0.2s ease-out;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(15px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .confirm-modal h3 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.4rem;
+      color: #5c3a1e;
+      margin-bottom: 0.7rem;
+    }
+
+    .confirm-modal p {
+      font-size: 0.95rem;
+      color: #8b7355;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .confirm-btn-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .completion {
+      display: none;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .completion.active { display: block; }
+
+    .completion h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.8rem;
+      color: #5c3a1e;
+      margin-bottom: 0.8rem;
+    }
+
+    .completion p {
+      font-size: 1.05rem;
+      color: #8b7355;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .checkmark {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ============================================
+       LANGUAGE TOGGLE
+       ============================================ */
+    .lang-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+      z-index: 100;
+    }
+    .lang-toggle-label {
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 0.72rem;
+      font-style: italic;
+      color: #5c3a1e;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 0.55rem;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(92, 58, 30, 0.08);
+      white-space: nowrap;
+    }
+    .lang-toggle-buttons {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .lang-toggle button {
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.35rem 0.9rem;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #8b7355;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      opacity: 0.5;
+      backdrop-filter: blur(4px);
+    }
+
+    .lang-toggle button.active {
+      opacity: 1;
+      border-color: #daa520;
+      color: #5c3a1e;
+      box-shadow: 0 1px 4px rgba(92, 58, 30, 0.15);
+    }
+
+    .lang-toggle button:hover:not(.active) {
+      opacity: 0.8;
+    }
+
+    /* ============================================
+       BASIC INFO FIELDS
+       ============================================ */
+    .basic-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem 0.75rem;
+    }
+
+    .basic-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .basic-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .field-row-3 {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .field-row-2 {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .section-divider {
+      border-top: 1px solid #f0e8db;
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+
+    .basic-field label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #5c3a1e;
+    }
+
+    .basic-field input,
+    .basic-field select {
+      padding: 0.6rem 0.9rem;
+      border: 2px solid #ece4d8;
+      border-radius: 6px;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 0.95rem;
+      color: #2d2d2d;
+      background: #fff;
+      transition: border-color 0.2s ease;
+    }
+
+    .basic-field input:focus,
+    .basic-field select:focus {
+      outline: none;
+      border-color: #daa520;
+    }
+
+    .basic-field input::placeholder { color: #bfae94; }
+
+    /* Validation: red flag missing fields after a Next/Skip attempt */
+    .basic-field input.field-invalid,
+    .basic-field select.field-invalid {
+      border-color: #c43030;
+      background: #fdf3f3;
+    }
+    .basic-field.field-invalid {
+      border-radius: 6px;
+      box-shadow: 0 0 0 2px #c43030;
+      padding: 0.4rem;
+      margin: -0.4rem;
+    }
+    .basic-required-hint {
+      display: none;
+      background: #fdf3f3;
+      border: 1px solid #f0c2c2;
+      color: #a83333;
+      font-size: 0.85rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .basic-required-hint.visible { display: block; }
+
+    .radio-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .radio-option {
+      flex: 1;
+      min-width: 90px;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-option label {
+      display: block;
+      text-align: center;
+      padding: 0.55rem 1rem;
+      border: 2px solid #ece4d8;
+      border-radius: 6px;
+      background: #fff;
+      color: #5c3a1e;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      background: #daa520;
+      border-color: #daa520;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .radio-option label:hover {
+      border-color: #daa520;
+    }
+
+    .conditional-field {
+      display: none;
+      margin-top: 0.6rem;
+    }
+
+    .conditional-field.visible {
+      display: block;
+    }
+
+    .prompt-sub {
+      font-size: 0.9rem;
+      color: #8b7355;
+      margin-top: -0.8rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .prompt-questions {
+      font-size: 0.9rem;
+      color: #8b7355;
+      line-height: 1.5;
+      margin: -0.4rem 0 1.2rem 1.2rem;
+      padding: 0;
+    }
+
+    .prompt-questions li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 600px) {
+      /* Make room for the fixed lang-toggle (label + buttons) so it doesn't
+         overlap the title. Taller now that there's a label pill above. */
+      .page-header { padding-top: 6.25rem; }
+      .page-header h1,
+      .page-header h2 { font-size: 1.7rem; }
+
+      .prompt-text { font-size: 1.2rem; }
+
+      .story-card { flex: 0 0 200px; }
+
+      .btn-row { flex-wrap: wrap; }
+
+      .basic-fields { grid-template-columns: 1fr; }
+      .field-row-3,
+      .field-row-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="../content.js"></script>
+</head>
+<body>
+<!-- ============================================
+       HEADER
+       ============================================ -->
+<div class="lang-toggle">
+<div class="lang-toggle-label" data-i18n="lang-toggle-hint">Click to translate survey</div>
+<div class="lang-toggle-buttons">
+<button class="active" data-lang="en" onclick="setLang('en')">English</button>
+<button data-lang="es" onclick="setLang('es')">Español</button>
+<button data-lang="zh" onclick="setLang('zh')">中文</button>
+</div>
+</div>
+<div class="page-header">
+<h1 data-i18n="header-title">Our Way of Life</h1>
+<h2 data-i18n="header-subtitle">Share Your Story</h2>
+<p data-i18n="header-desc">In this research study of civic participation, you are invited to reflect on your lifetime of contributions to your community. Take a moment to think about the people who shaped you and the moments that stand out. Share these memories to be added to this website's participant list. Please include your personal email so we can request your approval before publication.</p>
+</div>
+<section class="stories-section">
+<h3 class="stories-heading" data-i18n="stories-heading">Stories Published</h3>
+<div class="story-carousel">
+<a class="story-card" href="https://www.ourwayoflifearchive.com/s/stories/senj6" rel="noopener" target="_blank">
+<img alt="SENJ6" class="story-thumb" loading="lazy" src="https://www.ourwayoflifearchive.com/uploads/b/4d4f27a254ad409573c7c4eb443d718ebb65ef79eb130e662c91851895189621/2024-11-10_20-56-42_1731301015.jpg"/>
+<p class="quote" data-i18n="quote-1">"We stayed together very well. It made you feel safe and wanted and loved."</p>
+<p class="attribution" data-i18n="attr-1">SENJ6 — on growing up in Harlem</p>
+</a>
+<a class="story-card" href="https://www.ourwayoflifearchive.com/s/stories/mlnj6" rel="noopener" target="_blank">
+<img alt="MLNJ6" class="story-thumb" loading="lazy" src="https://www.ourwayoflifearchive.com/uploads/b/4d4f27a254ad409573c7c4eb443d718ebb65ef79eb130e662c91851895189621/2021-05-10_11-27-04_1620660411.png"/>
+<p class="quote" data-i18n="quote-kwanzaa">"Umoja — unity. What can I do today to think more of unity in my family, in my community?"</p>
+<p class="attribution" data-i18n="attr-kwanzaa">MLNJ6 — on Kwanzaa</p>
+</a>
+<a class="story-card" href="https://www.ourwayoflifearchive.com/s/stories/emwe" rel="noopener" target="_blank">
+<img alt="EMWE" class="story-thumb" loading="lazy" src="https://www.ourwayoflifearchive.com/uploads/b/4d4f27a254ad409573c7c4eb443d718ebb65ef79eb130e662c91851895189621/Yo%20sin%20pensarlo%20me%20veo%20involucrado%20en%20la%20comunidad.%20Me%20dejo%20llevar%20por%20la%20corriente.%20Nunca%20espero%20lo%20que%20va%20a%20suceder%2C%20pero%20siempre%20espero%20algo%20positivo%20y%20de%20repente%20llegan%20cosas%20que%20no%20esperaba.%20_1726877358.jpg"/>
+<p class="quote" data-i18n="quote-emwe">"Yo sin pensarlo me veo involucrado en la comunidad."</p>
+<p class="attribution" data-i18n="attr-emwe">EMWE — sobre la participación comunitaria</p>
+</a>
+</div>
+</section>
+<!-- ============================================
+       FORM
+       ============================================ -->
+<div class="form-container" id="formContainer">
+<div class="progress-label" id="progressLabel">1 of 9</div>
+<div class="progress-bar" id="progressBar"></div>
+<!-- SECTION 1a: Basic Information (Part 1) -->
+<div class="form-section active" data-section="basic-info">
+<div class="prompt-text" data-i18n="prompt-basic">Basic Info</div>
+<div class="basic-required-hint" data-i18n="basic-required-hint">Please fill in every field before continuing.</div>
+<div class="basic-fields">
+<div class="field-row-3">
+<div class="basic-field">
+<label data-i18n="label-age" for="age">Age:</label>
+<input data-i18n-placeholder="ph-age" id="age" name="age" type="text" placeholder="e.g. 65"/>
+</div>
+<div class="basic-field">
+<label data-i18n="label-gender" for="gender">Gender:</label>
+<input data-i18n-placeholder="ph-gender" id="gender" name="gender" type="text" placeholder="e.g. Female"/>
+</div>
+<div class="basic-field">
+<label data-i18n="label-ethnicity" for="race-ethnicity">Race/ethnicity:</label>
+<input data-i18n-placeholder="ph-ethnicity" id="race-ethnicity" name="race-ethnicity" type="text" placeholder="e.g. African American"/>
+</div>
+</div>
+<div class="field-row-2">
+<div class="basic-field">
+<label data-i18n="label-country" for="country">Country of origin:</label>
+<input data-i18n-placeholder="ph-country" id="country" name="country" type="text" placeholder="e.g. Mexico"/>
+</div>
+<div class="basic-field">
+<label data-i18n="label-language-spoken" for="language-spoken">Language(s) spoken:</label>
+<input data-i18n-placeholder="ph-language-spoken" id="language-spoken" name="language-spoken" type="text" placeholder="e.g. Spanish"/>
+</div>
+</div>
+<div class="field-row-3">
+<div class="basic-field">
+<label data-i18n="label-years-us" for="years-us">Years in the US:</label>
+<input data-i18n-placeholder="ph-years-us" id="years-us" name="years-us" type="text" placeholder="e.g. 40"/>
+</div>
+<div class="basic-field">
+<label data-i18n="label-years-city" for="years-city">Years in current city:</label>
+<input data-i18n-placeholder="ph-years-city" id="years-city" name="years-city" type="text" placeholder="e.g. 20"/>
+</div>
+<div class="basic-field">
+<label data-i18n="label-education" for="education">Education:</label>
+<select id="education" name="education">
+<option value="" data-i18n="opt-edu-blank">Select...</option>
+<option value="Elementary" data-i18n="opt-edu-elementary">Elementary</option>
+<option value="Highschool" data-i18n="opt-edu-highschool">Highschool</option>
+<option value="College" data-i18n="opt-edu-college">College</option>
+<option value="University" data-i18n="opt-edu-university">University</option>
+</select>
+</div>
+</div>
+<div class="basic-field full-width section-divider">
+<label data-i18n="label-voted">Do you vote in local or presidential elections?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input type="radio" id="voted-yes" name="voted" value="Yes"/>
+<label for="voted-yes" data-i18n="opt-yes">Yes</label>
+</div>
+<div class="radio-option">
+<input type="radio" id="voted-no" name="voted" value="No"/>
+<label for="voted-no" data-i18n="opt-no">No</label>
+</div>
+</div>
+</div>
+<div class="basic-field full-width">
+<label data-i18n="label-volunteer" for="volunteer">Do you volunteer?</label>
+<input data-i18n-placeholder="ph-volunteer" id="volunteer" name="volunteer" type="text" placeholder="If yes, how?"/>
+</div>
+<div class="basic-field full-width">
+<label data-i18n="label-health" for="health">Do you have health conditions?</label>
+<input id="health" name="health" type="text" data-i18n-placeholder="ph-health" placeholder="If yes, please describe"/>
+</div>
+<div class="basic-field full-width">
+<label data-i18n="label-email" for="email">Personal email:</label>
+<input data-i18n-placeholder="ph-email" id="email" name="email" type="email" placeholder="e.g. you@example.com"/>
+</div>
+</div>
+<div class="btn-row">
+<span></span>
+<button class="btn btn-next" data-i18n="btn-next" onclick="navigate(1)">Next</button>
+</div>
+</div>
+<!-- SECTION: Creative Work -->
+<div class="form-section" data-section="creative-work">
+<div class="prompt-text" data-i18n="prompt-creative">Based on your personal journey, create a poem, story, song, collage, drawing, photograph, and/or another creative work that captures the essence of your contributions over the years.</div>
+<div class="prompt-sub" data-i18n="sub-creative">A question to guide your expression: what life experiences and key moments have influenced the ways you participate and give back to your community, and/or society?</div>
+<textarea class="answer-area" data-i18n-placeholder="placeholder-creative" placeholder="Describe your work and writings here"></textarea>
+<div class="recorder-section">
+<input type="file" class="file-input-hidden" accept="image/*" onchange="handleFileSelect(this)"/>
+<button type="button" class="file-upload-btn" onclick="this.previousElementSibling.click()">
+<svg class="upload-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+<span class="btn-label" data-i18n="btn-upload">Upload your creative work</span>
+</button>
+<div class="file-upload-hint" data-i18n="upload-hint">Large images are automatically resized.</div>
+<div class="file-upload-status"></div>
+<div class="file-preview"><div class="check-icon">&#10003;</div><span class="file-name"></span><span class="file-size"></span><button type="button" class="delete-audio-btn" onclick="deleteFile(this)" aria-label="Delete file" title="Delete file">&times;</button></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-back" data-i18n="btn-back" onclick="navigate(-1)">Back</button>
+<button class="btn btn-skip" data-i18n="btn-skip" onclick="navigate(1, true)">Skip</button>
+<button class="btn btn-next" data-i18n="btn-next" onclick="navigate(1)">Next</button>
+</div>
+</div>
+<!-- Dynamic story-prompt sections (rendered from defaultContent.questions + admin overrides) -->
+<div id="dynamicSections"></div>
+<template id="questionTemplate">
+<div class="form-section">
+<div class="prompt-text"></div>
+<div class="prompt-sub"></div>
+<textarea class="answer-area" data-i18n-placeholder="placeholder-answer" placeholder="Type your answer here..."></textarea>
+<div class="recorder-section">
+<div class="or-divider" data-i18n="divider-or">or</div>
+<button class="record-btn" onclick="toggleRecording(this)">
+<svg class="mic-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="23"></line><line x1="8" x2="16" y1="23" y2="23"></line></svg>
+<span class="pulse-dot"></span>
+<span class="btn-label" data-i18n="btn-record">Record your answer</span>
+</button>
+<div class="recording-status"></div>
+<div class="transcription-preview"></div>
+<div class="audio-preview"><div class="check-icon">&#10003;</div><span class="saved-label" data-i18n="saved-label">Recording saved</span><audio controls></audio><button type="button" class="delete-audio-btn" onclick="deleteAudio(this)" aria-label="Delete recording" title="Delete recording">&times;</button></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-back" data-i18n="btn-back" onclick="navigate(-1)">Back</button>
+<button class="btn btn-skip" data-i18n="btn-skip" onclick="navigate(1, true)">Skip</button>
+<button class="btn btn-next" data-i18n="btn-next" onclick="navigate(1)">Next</button>
+</div>
+</div>
+</template>
+</div>
+<!-- ============================================
+       CONFIRMATION MODAL
+       ============================================ -->
+<div class="confirm-overlay" id="confirmOverlay">
+<div class="confirm-modal">
+<h3 data-i18n="confirm-title">Submit your story?</h3>
+<p data-i18n="confirm-desc">Once submitted, your responses will be sent for review. You won't be able to edit them after this step.</p>
+<div class="confirm-btn-row">
+<button class="btn btn-skip" data-i18n="confirm-cancel" onclick="cancelSubmit()">Cancel</button>
+<button class="btn btn-submit" data-i18n="confirm-confirm" onclick="confirmSubmit()">Yes, Submit</button>
+</div>
+</div>
+</div>
+
+<!-- ============================================
+       COMPLETION
+       ============================================ -->
+<div class="completion" id="completion">
+<div class="checkmark">✓</div>
+<h2 data-i18n="completion-title">Thank You</h2>
+<p data-i18n="completion-desc">Your submission will be reviewed for posting.</p>
+</div>
+<!-- ============================================
+       JAVASCRIPT
+       ============================================ -->
+<script>
+    // ── CONTENT (defaults from /content.js, overrides from /.netlify/functions/get-content) ─
+
+    function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
+
+    var T = deepClone(window.defaultContent.i18n);
+    var questions = deepClone(window.defaultContent.questions);
+
+    function applyOverrides(overrides) {
+      T = deepClone(window.defaultContent.i18n);
+      questions = deepClone(window.defaultContent.questions);
+      if (overrides && overrides.i18n) {
+        Object.keys(overrides.i18n).forEach(function(key) {
+          if (!T[key]) T[key] = { en: '', es: '', zh: '' };
+          ['en','es','zh'].forEach(function(lang) {
+            var v = overrides.i18n[key] && overrides.i18n[key][lang];
+            if (typeof v === 'string' && v.trim()) T[key][lang] = v;
+          });
+        });
+      }
+      if (overrides && Array.isArray(overrides.questions)) {
+        questions = overrides.questions;
+      }
+    }
+
+    function renderDynamicSections() {
+      var container = document.getElementById('dynamicSections');
+      var template = document.getElementById('questionTemplate');
+      container.innerHTML = '';
+      var defaultSubmitNote = (T['submit-note'] && T['submit-note'].en) || '';
+      questions.forEach(function(q, i) {
+        var node = template.content.firstElementChild.cloneNode(true);
+        node.setAttribute('data-section', q.id);
+        node.querySelector('.prompt-text').setAttribute('data-q-prompt', q.id);
+        node.querySelector('.prompt-sub').setAttribute('data-q-sub', q.id);
+        if (i === questions.length - 1) {
+          var skip = node.querySelector('.btn-skip');
+          if (skip) skip.remove();
+          var nextBtn = node.querySelector('.btn-next');
+          nextBtn.classList.remove('btn-next');
+          nextBtn.classList.add('btn-submit');
+          nextBtn.setAttribute('data-i18n', 'btn-submit');
+          nextBtn.setAttribute('onclick', 'submitForm()');
+          var note = document.createElement('p');
+          note.className = 'submit-note';
+          note.setAttribute('data-i18n', 'submit-note');
+          note.textContent = defaultSubmitNote;
+          node.appendChild(note);
+        }
+        container.appendChild(node);
+      });
+    }
+
+    var currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      // Update toggle buttons
+      document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      // Update text content
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (T[key] && T[key][lang]) el.textContent = T[key][lang];
+      });
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        if (T[key] && T[key][lang]) el.placeholder = T[key][lang];
+      });
+      // Update dynamic question prompts (text lives on the question, not in T)
+      document.querySelectorAll('[data-q-prompt]').forEach(function(el) {
+        var id = el.getAttribute('data-q-prompt');
+        var q = questions.find(function(x) { return x.id === id; });
+        if (q && q.prompt) el.textContent = q.prompt[lang] || q.prompt.en || '';
+      });
+      document.querySelectorAll('[data-q-sub]').forEach(function(el) {
+        var id = el.getAttribute('data-q-sub');
+        var q = questions.find(function(x) { return x.id === id; });
+        var t = (q && q.sub) ? (q.sub[lang] || q.sub.en || '') : '';
+        el.textContent = t;
+        el.style.display = t ? '' : 'none';
+      });
+      // Update progress label
+      updateProgress();
+      // Adjust prompt sizes based on text length
+      adjustPromptSizes();
+      // Update speech recognition language
+      if (lang === 'es') speechLang = 'es-US';
+      else if (lang === 'zh') speechLang = 'zh-CN';
+      else speechLang = 'en-US';
+    }
+
+    function adjustPromptSizes() {
+      document.querySelectorAll('.prompt-text').forEach(function(el) {
+        var len = el.textContent.length;
+        el.classList.remove('long', 'very-long');
+        if (len > 260) el.classList.add('very-long');
+        else if (len > 200) el.classList.add('long');
+      });
+    }
+
+    var speechLang = 'en-US';
+
+    var sections;
+    var currentIndex = 0;
+    var totalSections = 0;
+    var responses = {};
+    var audioBlobs = {};
+    var creativeFile = null;
+
+    // Active recording state
+    var activeRecorder = null;
+    var activeRecognition = null;
+
+    var progressBar = document.getElementById('progressBar');
+
+    function buildProgressBar() {
+      progressBar.innerHTML = '';
+      for (var i = 0; i < totalSections; i++) {
+        var step = document.createElement('div');
+        step.className = 'progress-step' + (i === 0 ? ' active' : '');
+        progressBar.appendChild(step);
+      }
+    }
+
+    function initApp() {
+      renderDynamicSections();
+      sections = document.querySelectorAll('.form-section');
+      totalSections = sections.length;
+      buildProgressBar();
+      setLang(currentLang);
+      adjustPromptSizes();
+      // Clear basic-info invalid flags as soon as the user starts fixing them
+      var basic = document.querySelector('[data-section="basic-info"]');
+      if (basic) {
+        basic.addEventListener('input', function(e) {
+          var t = e.target;
+          if (t.classList) t.classList.remove('field-invalid');
+          var bf = t.closest && t.closest('.basic-field');
+          if (bf) bf.classList.remove('field-invalid');
+        });
+        basic.addEventListener('change', function(e) {
+          var t = e.target;
+          if (t.classList) t.classList.remove('field-invalid');
+          var bf = t.closest && t.closest('.basic-field');
+          if (bf) bf.classList.remove('field-invalid');
+        });
+      }
+    }
+
+    // Boot: fetch admin overrides, then render and initialize.
+    fetch('/.netlify/functions/get-content?surface=story', { cache: 'no-cache' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .catch(function() { return null; })
+      .then(function(overrides) {
+        if (overrides) applyOverrides(overrides);
+        initApp();
+      });
+
+    function updateProgress() {
+      var steps = progressBar.querySelectorAll('.progress-step');
+      for (var i = 0; i < steps.length; i++) {
+        steps[i].className = 'progress-step';
+        if (i < currentIndex) steps[i].classList.add('done');
+        if (i === currentIndex) steps[i].classList.add('active');
+      }
+      var ofWord = T['word-of'][currentLang] || 'of';
+      document.getElementById('progressLabel').textContent =
+        (currentIndex + 1) + ' ' + ofWord + ' ' + totalSections;
+    }
+
+    function saveCurrentResponse() {
+      var section = sections[currentIndex];
+      var key = section.getAttribute('data-section');
+
+      // Section breaks collect no data
+      if (section.getAttribute('data-section-type') === 'section') return;
+
+      // Handle basic-info section with individual fields
+      if (key === 'basic-info') {
+        var fields = section.querySelectorAll('input, select');
+        var radioGroups = {};
+        fields.forEach(function(f) {
+          if (f.type === 'radio') {
+            if (f.checked) radioGroups[f.name] = f.value;
+          } else if (f.value.trim()) {
+            responses[f.name] = f.value.trim();
+          }
+        });
+        Object.keys(radioGroups).forEach(function(k) {
+          responses[k] = radioGroups[k];
+        });
+        return;
+      }
+
+      var textarea = section.querySelector('.answer-area');
+      var transcription = section.querySelector('.transcription-preview');
+      var text = textarea ? textarea.value.trim() : '';
+      if (!text && transcription && transcription.textContent.trim()) {
+        text = transcription.textContent.trim();
+      }
+      if (text) responses[key] = text;
+    }
+
+    function navigate(direction, isSkip) {
+      // Stop any active recording
+      if (activeRecorder) stopRecording();
+
+      // Require every field on basic-info before moving forward (Next or Skip).
+      // Mark missing fields red, scroll to the first one, and block navigation.
+      if (direction === 1) {
+        var section = sections[currentIndex];
+        if (section.getAttribute('data-section') === 'basic-info') {
+          var invalid = [];
+          section.querySelectorAll('input[type="text"], input[type="email"]').forEach(function(inp) {
+            inp.classList.toggle('field-invalid', !inp.value.trim());
+            if (!inp.value.trim()) invalid.push(inp);
+          });
+          section.querySelectorAll('select').forEach(function(sel) {
+            sel.classList.toggle('field-invalid', !sel.value);
+            if (!sel.value) invalid.push(sel);
+          });
+          // Radio groups: at least one option in each named group must be checked
+          var radioGroups = {};
+          section.querySelectorAll('input[type="radio"]').forEach(function(r) { radioGroups[r.name] = radioGroups[r.name] || false; });
+          section.querySelectorAll('input[type="radio"]:checked').forEach(function(r) { radioGroups[r.name] = true; });
+          Object.keys(radioGroups).forEach(function(name) {
+            var first = section.querySelector('input[type="radio"][name="' + name + '"]');
+            var groupEl = first && first.closest('.basic-field');
+            if (groupEl) groupEl.classList.toggle('field-invalid', !radioGroups[name]);
+            if (!radioGroups[name] && groupEl) invalid.push(groupEl);
+          });
+          if (invalid.length) {
+            var hint = section.querySelector('.basic-required-hint');
+            if (hint) hint.classList.add('visible');
+            invalid[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (invalid[0].focus) invalid[0].focus({ preventScroll: true });
+            return;
+          }
+        }
+      }
+
+      if (!isSkip) saveCurrentResponse();
+
+      var nextIndex = currentIndex + direction;
+      if (nextIndex < 0 || nextIndex >= totalSections) return;
+
+      sections[currentIndex].classList.remove('active');
+      currentIndex = nextIndex;
+      sections[currentIndex].classList.add('active');
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitForm() {
+      // Show confirmation modal instead of submitting immediately
+      document.getElementById('confirmOverlay').classList.add('visible');
+    }
+
+    function cancelSubmit() {
+      document.getElementById('confirmOverlay').classList.remove('visible');
+    }
+
+    function buildLabels() {
+      var labels = {
+        email: 'Personal email',
+        age: 'Age',
+        gender: 'Gender',
+        'race-ethnicity': 'Race/ethnicity',
+        country: 'Country of origin',
+        'language-spoken': 'Language(s) spoken',
+        'years-us': 'Years in the US',
+        'years-city': 'Years in current city',
+        education: 'Education',
+        voted: 'Do you vote in local or presidential elections?',
+        volunteer: 'Do you volunteer?',
+        health: 'Do you have health conditions?',
+        'creative-work': (T['prompt-creative'] && T['prompt-creative'].en) || 'Creative work'
+      };
+      questions.forEach(function(q) {
+        if (q.type === 'section') return;
+        labels[q.id] = (q.prompt && q.prompt.en) || q.id;
+      });
+      return labels;
+    }
+
+    function buildFieldOrder() {
+      var order = ['email', 'age', 'gender', 'race-ethnicity', 'country', 'language-spoken',
+        'years-us', 'years-city', 'education', 'voted', 'volunteer', 'health', 'creative-work'];
+      questions.forEach(function(q) {
+        if (q.type === 'section') return;
+        order.push(q.id);
+      });
+      return order;
+    }
+
+    function confirmSubmit() {
+      document.getElementById('confirmOverlay').classList.remove('visible');
+      saveCurrentResponse();
+
+      // Add current language
+      responses.language = currentLang === 'es' ? 'Spanish' : currentLang === 'zh' ? 'Mandarin' : 'English';
+
+      // Build label map and field order for the email (so admin-edited / admin-added
+      // questions appear with the right label without backend changes).
+      responses.labels = buildLabels();
+      responses.fieldOrder = buildFieldOrder();
+
+      // Disable submit button
+      var submitBtn = document.querySelector('.btn-submit');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = currentLang === 'es' ? 'Enviando...' : currentLang === 'zh' ? '提交中...' : 'Submitting...';
+      }
+
+      // Bundle audio + creative file into the submit payload so the
+      // backend can send one email per submission.
+      gatherAttachments().then(function(attachments) {
+        responses.attachments = attachments;
+        return fetch('/.netlify/functions/submit-story', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(responses),
+        });
+      })
+        .then(function(res) { return res.json(); })
+        .then(function() {
+          document.getElementById('formContainer').style.display = 'none';
+          document.getElementById('completion').classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch(function(err) {
+          console.error('Submit error:', err);
+          document.getElementById('formContainer').style.display = 'none';
+          document.getElementById('completion').classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    function gatherAttachments() {
+      var items = [];
+      var keys = Object.keys(audioBlobs);
+      var promise = Promise.resolve();
+      keys.forEach(function(key) {
+        promise = promise.then(function() {
+          return blobToBase64(audioBlobs[key]).then(function(b64) {
+            var ct = audioBlobs[key].type || 'audio/webm';
+            var ext = ct.indexOf('mp4') >= 0 ? 'm4a' : ct.indexOf('ogg') >= 0 ? 'ogg' : 'webm';
+            items.push({ filename: 'audio-' + key + '.' + ext, content: b64, contentType: ct });
+          });
+        });
+      });
+      if (creativeFile) {
+        promise = promise.then(function() {
+          return blobToBase64(creativeFile).then(function(b64) {
+            items.push({
+              filename: 'creative-' + creativeFile.name,
+              content: b64,
+              contentType: creativeFile.type || 'application/octet-stream',
+            });
+          });
+        });
+      }
+      return promise.then(function() { return items; });
+    }
+
+    // ── Voice Recording ──────────────────────────
+    function toggleRecording(btn) {
+      if (btn.classList.contains('recording')) {
+        stopRecording();
+      } else {
+        startRecording(btn);
+      }
+    }
+
+    function startRecording(btn) {
+      var section = btn.closest('.form-section');
+      var statusEl = section.querySelector('.recording-status');
+      var previewEl = section.querySelector('.transcription-preview');
+      var label = btn.querySelector('.btn-label');
+
+      // Request microphone
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+          btn.classList.add('recording');
+          label.textContent = T['btn-stop-record'][currentLang];
+          statusEl.textContent = T['status-listening'][currentLang];
+          previewEl.textContent = '';
+          previewEl.classList.add('visible');
+
+          // MediaRecorder for audio capture (low-bitrate Opus for compact email attachments)
+          var recOpts = { audioBitsPerSecond: 24000 };
+          if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+            recOpts.mimeType = 'audio/webm;codecs=opus';
+          }
+          var recorder;
+          try { recorder = new MediaRecorder(stream, recOpts); }
+          catch (e) { recorder = new MediaRecorder(stream); }
+          var chunks = [];
+          recorder.ondataavailable = function(e) { chunks.push(e.data); };
+          recorder.onstop = function() {
+            var blob = new Blob(chunks, { type: 'audio/webm' });
+            var key = section.getAttribute('data-section');
+            audioBlobs[key] = blob;
+            stream.getTracks().forEach(function(t) { t.stop(); });
+
+            // Show audio preview with play button
+            var audioPreview = section.querySelector('.audio-preview');
+            var audioEl = audioPreview.querySelector('audio');
+            audioEl.src = URL.createObjectURL(blob);
+            audioPreview.classList.add('visible');
+          };
+          recorder.start();
+          activeRecorder = { recorder: recorder, btn: btn, section: section };
+
+          // SpeechRecognition for live transcription
+          var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+          if (SpeechRecognition) {
+            var recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = speechLang;
+
+            // Save existing textarea value so we can append transcription to it
+            var textareaEl = section.querySelector('.answer-area');
+            var initialText = textareaEl ? textareaEl.value : '';
+            var separator = initialText && !initialText.endsWith(' ') && !initialText.endsWith('\n') ? ' ' : '';
+
+            var finalTranscript = '';
+            recognition.onresult = function(event) {
+              var interim = '';
+              for (var i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                  finalTranscript += event.results[i][0].transcript + ' ';
+                } else {
+                  interim += event.results[i][0].transcript;
+                }
+              }
+              var combined = finalTranscript + interim;
+              previewEl.textContent = combined;
+              // Also write live to the textarea
+              if (textareaEl) {
+                textareaEl.value = initialText + separator + combined;
+              }
+            };
+
+            recognition.onerror = function(e) {
+              // Audio recording continues regardless. Log to console for our own
+              // debugging but don't surface anything to the user — they'd just
+              // wonder if something was broken with their submission.
+              console.log('Speech recognition error:', e.error, e);
+            };
+
+            recognition.onend = function() {
+              // Auto-restart if still recording
+              if (btn.classList.contains('recording')) {
+                try { recognition.start(); } catch(e) {}
+              }
+            };
+
+            recognition.start();
+            activeRecognition = recognition;
+          } else {
+            statusEl.textContent = 'Recording audio (transcription not supported in this browser)';
+          }
+        })
+        .catch(function(err) {
+          statusEl.textContent = T['status-denied'][currentLang];
+          console.error('Mic error:', err);
+        });
+    }
+
+    function stopRecording() {
+      if (!activeRecorder) return;
+
+      var btn = activeRecorder.btn;
+      var section = activeRecorder.section;
+      var statusEl = section.querySelector('.recording-status');
+      var previewEl = section.querySelector('.transcription-preview');
+      var textarea = section.querySelector('.answer-area');
+      var label = btn.querySelector('.btn-label');
+
+      btn.classList.remove('recording');
+      label.textContent = T['btn-record'][currentLang];
+      statusEl.textContent = T['status-saved'][currentLang];
+
+      activeRecorder.recorder.stop();
+
+      if (activeRecognition) {
+        try { activeRecognition.stop(); } catch(e) {}
+        activeRecognition = null;
+      }
+
+      // Copy transcription to textarea if textarea is empty
+      if (!textarea.value.trim() && previewEl.textContent.trim()) {
+        textarea.value = previewEl.textContent.trim();
+      }
+
+      activeRecorder = null;
+    }
+
+    // ── Delete recording ─────────────────────────
+    function deleteAudio(btn) {
+      var section = btn.closest('.form-section');
+      var key = section.getAttribute('data-section');
+      delete audioBlobs[key];
+
+      var audioPreview = section.querySelector('.audio-preview');
+      audioPreview.classList.remove('visible');
+      var audioEl = audioPreview.querySelector('audio');
+      try { URL.revokeObjectURL(audioEl.src); } catch (e) {}
+      audioEl.removeAttribute('src');
+
+      // Also clear the transcription preview and status
+      var previewEl = section.querySelector('.transcription-preview');
+      if (previewEl) {
+        previewEl.textContent = '';
+        previewEl.classList.remove('visible');
+      }
+      var statusEl = section.querySelector('.recording-status');
+      if (statusEl) statusEl.textContent = '';
+    }
+
+    function blobToBase64(blob) {
+      return new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          // Strip the data URL prefix
+          var base64 = reader.result.split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    // ── Creative file upload ─────────────────────
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function compressImage(file) {
+      return new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var img = new Image();
+          img.onload = function() {
+            var maxDim = 2048;
+            var width = img.width;
+            var height = img.height;
+            if (width > maxDim || height > maxDim) {
+              if (width > height) {
+                height = Math.round(height * (maxDim / width));
+                width = maxDim;
+              } else {
+                width = Math.round(width * (maxDim / height));
+                height = maxDim;
+              }
+            }
+            var canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            canvas.toBlob(function(blob) {
+              if (!blob) { resolve(file); return; }
+              if (blob.size < file.size) {
+                var newName = file.name.replace(/\.[^.]+$/, '') + '.jpg';
+                resolve(new File([blob], newName, { type: 'image/jpeg' }));
+              } else {
+                resolve(file);
+              }
+            }, 'image/jpeg', 0.85);
+          };
+          img.onerror = function() { resolve(file); };
+          img.src = e.target.result;
+        };
+        reader.onerror = function() { reject(new Error('Failed to read file')); };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function handleFileSelect(input) {
+      var file = input.files && input.files[0];
+      if (!file) return;
+      var section = input.closest('.form-section');
+      var statusEl = section.querySelector('.file-upload-status');
+      var preview = section.querySelector('.file-preview');
+
+      if (!file.type.startsWith('image/')) {
+        statusEl.textContent = T['upload-not-image'][currentLang];
+        input.value = '';
+        return;
+      }
+
+      statusEl.textContent = T['upload-processing'][currentLang];
+
+      compressImage(file).then(function(processed) {
+        if (processed.size > 4.5 * 1024 * 1024) {
+          statusEl.textContent = T['upload-too-large'][currentLang];
+          input.value = '';
+          return;
+        }
+        statusEl.textContent = '';
+        creativeFile = processed;
+        preview.querySelector('.file-name').textContent = processed.name;
+        preview.querySelector('.file-size').textContent = formatFileSize(processed.size);
+        preview.classList.add('visible');
+      }).catch(function(err) {
+        console.error('Image processing error:', err);
+        statusEl.textContent = T['upload-too-large'][currentLang];
+        input.value = '';
+      });
+    }
+
+    function deleteFile(btn) {
+      var section = btn.closest('.form-section');
+      creativeFile = null;
+      var preview = section.querySelector('.file-preview');
+      preview.classList.remove('visible');
+      var input = section.querySelector('.file-input-hidden');
+      if (input) input.value = '';
+      var statusEl = section.querySelector('.file-upload-status');
+      if (statusEl) statusEl.textContent = '';
+    }
+
+    // ── Iframe auto-resize for embedding ─────────
+    function notifyHeight() {
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'resize',
+          height: document.body.scrollHeight
+        }, '*');
+      }
+    }
+    window.addEventListener('load', notifyHeight);
+    new MutationObserver(notifyHeight).observe(document.body, {
+      childList: true, subtree: true, attributes: true
+    });
+    window.addEventListener('transitionend', notifyHeight);
+  </script>
+</body>
+</html>
